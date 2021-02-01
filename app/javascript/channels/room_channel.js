@@ -1,10 +1,13 @@
 import consumer from "./consumer"
 
 consumer.subscriptions.create("RoomChannel", {
+
+
   connected() {
     // Called when the subscription is ready for use on the server
     console.log('Connected to RoomChannel')
   },
+
 
   disconnected() {
     // Called when the subscription has been terminated by the server
@@ -17,6 +20,7 @@ consumer.subscriptions.create("RoomChannel", {
   },
 
   speak: function(message) {
-    return this.perform('speak');
-  }
+    return this.perform('speak', {
+      message: message
+    })
 });
